@@ -15,10 +15,10 @@ First some data is written into the collection ```testcol``` during  starting up
 (mongo/update-upserting! (:mongo started) "testcol" {:_id "myId"}
                              {:_id  "myId"
                               :foo  "bar"
-                              :info "This was upserted into mongo in example-system.clj"})```
+                              :info "This was upserted into mongo in example-system.clj"})
+```
 
-
-The project contains a very simple page, which is dependent on ```:mongo``` in _tesla-mongo-connect_ If you call ```http://localhost:8080/example``` the data is read out of mongo in [page.clj](./src/de/otto/tesla/mongo/example/page.clj):
+The project contains a very simple page, which is dependent on ```:mongo``` in _tesla-mongo-connect_. If you call ```http://localhost:8080/example``` the data is read out of mongo and rendered into the html-response in [page.clj](./src/de/otto/tesla/mongo/example/page.clj):
 
 ```clojure
 (mongo/find-one-checked! (:mongo self) "testcol" {})
