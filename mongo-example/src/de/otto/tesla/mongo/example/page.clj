@@ -1,7 +1,7 @@
 (ns de.otto.tesla.mongo.example.page
   (:require
     [com.stuartsierra.component :as c]
-    [de.otto.tesla.stateful.routes :as routes]
+    [de.otto.tesla.stateful.handler :as handler]
     [de.otto.status :as status]
     [de.otto.tesla.stateful.app-status :as app-status]
     [compojure.core :as compojure]
@@ -14,11 +14,11 @@
     (hiccup/html [:body [:h1 "One Thing that is in the mongo"]
                   [:pre (str x)]])))
 
-(defrecord ExamplePage [mongo routes app-status]
+(defrecord ExamplePage [mongo handler app-status]
   c/Lifecycle
   (start [self]
-    (routes/register-routes routes
-                            [(compojure/GET "/example" [_] (content self))])
+    (handler/register-handler handler
+                            (compojure/routes (compojure/GET "/example" [_] (content self))))
     (app-status/register-status-fun app-status
                                     (fn [] (status/status-detail :example-page :ok "page is always fine")))
     self)

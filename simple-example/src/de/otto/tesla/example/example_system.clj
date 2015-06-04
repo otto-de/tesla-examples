@@ -13,7 +13,7 @@
       (assoc :calculator
              (component/using (calculating/new-calculator example-calculation-function) [:metering :app-status]))
       (assoc :example-page
-             (component/using (page/new-page) [:routes :calculator :app-status]))
+             (component/using (page/new-page) [:handler :calculator :app-status]))
       (component/system-using {:server [:example-page]})))
 
 (defn -main

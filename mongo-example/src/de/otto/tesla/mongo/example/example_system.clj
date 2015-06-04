@@ -10,7 +10,7 @@
       (assoc :mongo
              (c/using (mongo/new-mongo "test-db") [:config :metering :app-status]))
       (assoc :example-page
-             (c/using (example-page/new-example-page) [:routes :mongo :app-status]))
+             (c/using (example-page/new-example-page) [:handler :mongo :app-status]))
       (c/system-using {:server [:example-page]})))
 
 (defn -main
