@@ -19,5 +19,5 @@
 (defn -main
   "starts up the production system."
   [& args]
-  (system/start (serving/add-server-to (example-system {}) :example-page)))
+  (system/start (serving/add-server (example-system {}) :example-page)))
 

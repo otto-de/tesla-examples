@@ -1,4 +1,4 @@
-(defproject de.otto/tesla-mongo-example "0.1.14"
+(defproject de.otto/tesla-mongo-example "0.1.15"
             :description "Addon to https://github.com/otto-de/tesla-microservice to read and write to mongodb."
             :url "https://github.com/otto-de/tesla-mongo-connect"
             :license {:name "Apache License 2.0"
@@ -6,7 +6,8 @@
             :scm {:name "git"
                   :url  "https://github.com/otto-de/tesla-mongo-connect"}
             :dependencies [[org.clojure/clojure "1.6.0"]
-                           [de.otto/tesla-microservice "0.1.14"]
+                           [de.otto/tesla-microservice "0.1.15"]
+                           [de.otto/tesla-jetty "0.1.0"]
                            [de.otto/tesla-mongo-connect "0.1.4"]
                            [org.slf4j/slf4j-api "1.7.12"]
                            [ch.qos.logback/logback-core "1.1.3"]
