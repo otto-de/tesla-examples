@@ -6,6 +6,7 @@ This repository will contain a collection of examples for [tesla-microservice](h
 
 * A [mongo example](./mongo-example) shows how to read and write to a mongodb.
 
+* A [httpkit example](./httpkit-example) shows how to use httpkit as a server.
 
 ## License
 Apache License
