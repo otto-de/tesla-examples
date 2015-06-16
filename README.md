@@ -8,6 +8,8 @@ This repository will contain a collection of examples for [tesla-microservice](h
 
 * A [httpkit example](./httpkit-example) shows how to use httpkit as a server.
 
+* A [zookeeper example](./zookeeper-example) shows how to use zookeeper addon.
+
 ## License
 Apache License
 
