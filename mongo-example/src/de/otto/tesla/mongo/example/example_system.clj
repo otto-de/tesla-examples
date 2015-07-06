@@ -18,9 +18,7 @@
   "starts up the production system."
   [& args]
   (let [started (c/start-system (example-system {}))
-        _ (println started)
-        mongodb (:mongo started)
-        _ (println mongodb)]
+        mongodb (:mongo started)]
     (mongo/update-upserting! (:mongo started) "testcol" {:_id "myId"}
                              {:_id  "myId"
                               :foo  "bar"
