@@ -1,0 +1,8 @@
+section .col {width:30%;}
+
+section .wide {
+    width:96%;
+    text-align: center;
+    border: 2px solid #3498DB;
+    padding: 20px 0;
+}
