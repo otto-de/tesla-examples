@@ -9,14 +9,14 @@
     [de.otto.status :as status]
     [com.stuartsierra.component :as c]))
 
-(defrecord Monitor []
+(defrecord Monitor [handler app-status]
   c/Lifecycle
   (start [self]
-    (handlers/register-handler (:handler self)
+    (handlers/register-handler handler
                                (osci-routes/oscillator-routes :page-config pages/page-config
                                                               :chart-def-fetch-fun charts/chart-definitions
                                                               :annotation-event-targets (annotations/annotation-events)))
-    (app-status/register-status-fun (:app-status self)
+    (app-status/register-status-fun app-status
                                     (fn [] (status/status-detail :example-page :ok "page is always fine")))
     self)
   (stop [self]
