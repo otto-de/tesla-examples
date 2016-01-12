@@ -5,7 +5,7 @@
                       :url  "http://www.apache.org/license/LICENSE-2.0.html"}
             :scm {:name "git"
                   :url  "https://github.com/otto-de/tesla-mongo-connect"}
-            :dependencies [[org.clojure/clojure "1.6.0"]
+            :dependencies [[org.clojure/clojure "1.7.0"]
                            [de.otto/tesla-microservice "0.1.18"]
                            [de.otto/tesla-jetty "0.1.0"]
                            [de.otto/tesla-mongo-connect "0.1.7"]
