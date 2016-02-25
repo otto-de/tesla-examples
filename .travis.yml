@@ -1,2 +1,6 @@
 language: clojure
-before_install: cd simple-example
+env:
+ - TEST_DIR=simple-example
+ - TEST_DIR=httpkit-example
+
+before_install: cd $TEST_DIR
