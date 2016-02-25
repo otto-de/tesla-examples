@@ -1,7 +1,2 @@
 language: clojure
-
-env:
- - TEST_DIR=simple-example
- - TEST_DIR=httpkit-example
-
-script: cd $TEST_DIR && lein test
+script: cd simple-example && lein test
