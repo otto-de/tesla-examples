@@ -1,5 +1,8 @@
 # tesla examples
 
+[![Build Status](https://travis-ci.org/otto-de/tesla-examples.svg)](https://travis-ci.org/otto-de/tesla-examples)
+
+
 This repository will contain a collection of examples for [tesla-microservice](https://github.com/otto-de/tesla-microservice).
 
 * The [simple example](./simple-example) shows how components can interact with each other and with the builtin functions of tesla-microservice.
