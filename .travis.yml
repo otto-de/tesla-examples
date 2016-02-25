@@ -1,0 +1,2 @@
+language: clojure
+script: cd simple-example && lein test
