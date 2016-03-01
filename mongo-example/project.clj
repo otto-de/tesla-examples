@@ -1,23 +1,30 @@
 (defproject de.otto/tesla-mongo-example "0.1.18"
-            :description "Addon to https://github.com/otto-de/tesla-microservice to read and write to mongodb."
-            :url "https://github.com/otto-de/tesla-mongo-connect"
-            :license {:name "Apache License 2.0"
-                      :url  "http://www.apache.org/license/LICENSE-2.0.html"}
-            :scm {:name "git"
-                  :url  "https://github.com/otto-de/tesla-mongo-connect"}
-            :dependencies [[org.clojure/clojure "1.7.0"]
-                           [de.otto/tesla-microservice "0.1.18"]
-                           [de.otto/tesla-jetty "0.1.0"]
-                           [de.otto/tesla-mongo-connect "0.1.7"]
-                           [hiccup "1.0.5"]
-                           [org.slf4j/slf4j-api "1.7.12"]
-                           [ch.qos.logback/logback-core "1.1.3"]
-                           [ch.qos.logback/logback-classic "1.1.3"]]
+  :description "Addon to https://github.com/otto-de/tesla-microservice to read and write to mongodb."
+  :url "https://github.com/otto-de/tesla-mongo-connect"
+  :license {:name "Apache License 2.0"
+            :url  "http://www.apache.org/license/LICENSE-2.0.html"}
+  :scm {:name "git"
+        :url  "https://github.com/otto-de/tesla-mongo-connect"}
+  :dependencies [[org.clojure/clojure "1.8.0"]
+                 [de.otto/tesla-microservice "0.1.28"]
+                 [de.otto/tesla-jetty "0.1.1"]
+                 [de.otto/tesla-mongo-connect "0.1.12"]
+                 [hiccup "1.0.5"]
+                 [org.slf4j/slf4j-api "1.7.16"]
+                 [ch.qos.logback/logback-core "1.1.5"]
+                 [ch.qos.logback/logback-classic "1.1.5"]]
 
-            :plugins [[lein-embongo "0.2.2"][lein-environ "1.0.0"]]
+  :plugins [[lein-embongo "0.2.2"] [lein-environ "1.0.0"]]
 
-            :embongo {:port     27017
-                      :version  "2.6.4"
-                      :data-dir "./target/mongo-data-files"}
+  :aliases {"test" ["do" "embongo" "test"]}
 
-            :main ^:skip-aot de.otto.tesla.mongo.example.example-system)
+  :embongo {:port     27017
+            :version  "2.6.4"
+            :data-dir "./target/mongo-data-files"}
+  :profiles {:dev {:main         de.otto.tesla.mongo.example.testcore
+                   :source-paths ["src" "test"]
+                   :dependencies [[ring-mock "0.1.5"]
+                                  [hickory "0.6.0"]
+                                  [me.lomin/component-restart "0.1.0"]]}}
+
+  :main ^:skip-aot de.otto.tesla.mongo.example.example-system)

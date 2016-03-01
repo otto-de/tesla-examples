@@ -1,0 +1,8 @@
+{
+ :server-port          8080
+ :default-mongo-port   27017
+ :test-db-mongo-host   "localhost"
+ :test-db-mongo-dbname "teslatest"
+ :test-db-mongo-user   ""
+ :test-db-mongo-passwd ""
+ }
