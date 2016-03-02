@@ -9,18 +9,17 @@ To start the application you can either use
 * an embedded mongodb provided by embongo. Start the application with ```lein embongo run```.
 
 ## What is happening?
-First some data is written into the collection ```testcol``` during  starting up the system in [example_system.clj](./src/de/otto/tesla/mongo/example/example_system.clj):
+The project contains a page, which is dependent on ```:mongo``` in _tesla-mongo-connect_. The page displays the database content and a form to add a document to the collection in the database.
+If you call ```http://localhost:8080/example``` the data is read out of mongo and rendered into the html-response in [page.clj](./src/de/otto/tesla/mongo/example/page.clj):
 
 ```clojure
-(mongo/update-upserting! (:mongo started) "testcol" {:_id "myId"}
-                             {:_id  "myId"
-                              :foo  "bar"
-                              :info "This was upserted into mongo in example-system.clj"})
+(mongo/find-checked! (:mongo self) "collection" {})
 ```
 
-The project contains a very simple page, which is dependent on ```:mongo``` in _tesla-mongo-connect_. If you call ```http://localhost:8080/example``` the data is read out of mongo and rendered into the html-response in [page.clj](./src/de/otto/tesla/mongo/example/page.clj):
+The form data is processed by the [page.clj](./src/de/otto/tesla/mongo/example/page.clj) via POST:
 
 ```clojure
-(mongo/find-one-checked! (:mongo self) "testcol" {})
+(mongo/update-upserting! mongo "collection" {:_id col}
+                             {$push 
+                                {(keyword key) value}})
 ```
-
