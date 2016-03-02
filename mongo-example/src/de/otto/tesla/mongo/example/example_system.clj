@@ -17,9 +17,4 @@
 (defn -main
   "starts up the production system."
   [& args]
-  (let [started (c/start-system (example-system {}))
-        mongodb (:mongo started)]
-    (mongo/update-upserting! (:mongo started) "testcol" {:_id "myId"}
-                             {:_id  "myId"
-                              :foo  "bar"
-                              :info "This was upserted into mongo in example-system.clj"})))
+  (let [started (c/start-system (example-system {}))]))

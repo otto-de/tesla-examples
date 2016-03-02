@@ -4,7 +4,7 @@ This is a very simple example for how to use mongo-db using the [tesla-mongo-con
 
 ## Running it
 To start the application you can either use
-* a mongo-db running on localhost (or whatever you change the config to in [default.properties](ls resources/default.properties)). Then you can start the application with ```lein run```
+* a mongo-db running on localhost (or whatever you change the config to in [default.edn](resources/default.edn)). Then you can start the application with ```lein run```
 
 * an embedded mongodb provided by embongo. Start the application with ```lein embongo run```.
 
