@@ -2,8 +2,8 @@
 
 This is a very simple application to demonstrate how to create an application based on [tesla-microservice](https://github.com/otto-de/tesla-microservice). Jetty is used as an embedded server, so there are two relevant dependencies:
 
-`[de.otto/tesla-microservice "0.1.18"]`
-`[de.otto/tesla-jetty "0.1.0"]`
+`[de.otto/tesla-microservice "0.7.1"]`
+`[de.otto/tesla-jetty "0.1.3"]`
 
 
 ## The application
@@ -20,7 +20,7 @@ Get [leiningen](http://leiningen.org/#install). Clone the repo. Start the exampl
 
 `$ lein run`
 
-Access the example service under `http://localhost:8080/example` and `http://localhost:8080/example/foo`.
+Access the example service under `http://localhost:8080/example`.
 
 Access the status report under `http://localhost:8080/status`.
 

@@ -6,8 +6,8 @@ This is a very simple application to demonstrate how to create an application ba
 
 So there are two relevant dependencies:
 
-`[de.otto/oscillator "0.2.4"]`
-`[de.otto/tesla-microservice "0.1.18"]`
+`[de.otto/oscillator "0.2.26"]`
+`[de.otto/tesla-microservice "0.7.1"]`
 
 
 ## Running it

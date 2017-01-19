@@ -14,7 +14,7 @@
 
   (mongo/update-upserting! mongodb "collection" {:_id "myId"}
                            {:_id  "myId"
-                            :foo  "bar"
+                            :foo  "bar was upserted into mongo"
                             :info "This was upserted into mongo"}))
 
 (deftest ^:unit mock-request-tests
@@ -31,25 +31,24 @@
                                  (some-> (select/select (select/class "d-id") parsed-html)
                                          first
                                          :content)))
-                          (is (= "info: "
-                                 (some-> (select/select (select/class "key") parsed-html)
-                                         first
-                                         :content
-                                         first)))
-                          (is (= ["This was upserted into mongo"]
-                                 (some-> (select/select (select/class "value") parsed-html)
-                                         first
-                                         :content)))
                           (is (= "foo: "
                                  (some-> (select/select (select/class "key") parsed-html)
-                                         last
+                                         first
                                          :content
                                          first)))
-                          (is (= ["bar"]
+                          (is (= ["bar was upserted into mongo"]
+                                 (some-> (select/select (select/class "value") parsed-html)
+                                         first
+                                         :content)))
+                          (is (= ["This was upserted into mongo"]
                                  (some-> (select/select (select/class "value") parsed-html)
                                          last
                                          :content)))
-                          )
+                          (is (= "info: "
+                                 (some-> (select/select (select/class "key") parsed-html)
+                                         last
+                                         :content
+                                         first))))
 
                         (testing "POST request - Should display new data.")
                         (let [response (all-handler (utils/mock-request :post "/example" {:params {:col "collection" :key "k1" :value "test"}}))
@@ -60,12 +59,12 @@
                                  (some-> (select/select (select/class "d-id") parsed-html)
                                          first
                                          :content)))
-                          (is (= "info: "
+                          (is (= "foo: "
                                  (some-> (select/select (select/class "key") parsed-html)
                                          first
                                          :content
                                          first)))
-                          (is (= ["This was upserted into mongo"]
+                          (is (= ["bar was upserted into mongo"]
                                  (some-> (select/select (select/class "value") parsed-html)
                                          first
                                          :content)))
@@ -77,6 +76,4 @@
                           (is (= ["[\"test\"]"]
                                  (some-> (select/select (select/class "value") parsed-html)
                                          last
-                                         :content)))
-                          )
-                        )))
+                                         :content)))))))
