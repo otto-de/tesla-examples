@@ -1,25 +1,13 @@
-
 <configuration>
     <contextName>tesla</contextName>
 
     <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
-        <append>true</append>
         <encoder>
-            <pattern>%d{ISO8601} %-5p logger=%c thread=%t msg="%m"%n</pattern>
-        </encoder>
-    </appender>
-
-    <appender name="fileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${log_location:-./target/logs}/de.otto.tesla.log</file>
-        <append>true</append>
-
-        <encoder>
-            <pattern>%d{ISO8601} %-5p logger=%c thread=%t  msg="%m"%n</pattern>
+            <pattern>%gray(%date{HH:mm:ss.SSS}) [%thread] %highlight(%-5level) %cyan(%logger{15}) %m%n</pattern>
         </encoder>
     </appender>
 
     <root level="${log_level:-info}">
         <appender-ref ref="${log_appender:-consoleAppender}"/>
     </root>
-
 </configuration>

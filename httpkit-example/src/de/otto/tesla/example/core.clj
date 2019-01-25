@@ -1,4 +1,4 @@
-(ns de.otto.tesla.example.example-system
+(ns de.otto.tesla.example.core
   (:require [de.otto.tesla.system :as system]
             [de.otto.tesla.serving-with-httpkit :as serving]
             [de.otto.tesla.example.page :as page]
@@ -7,11 +7,11 @@
 
 (defn example-system [runtime-config]
   (-> (system/base-system (merge {:name "httpkit-example"} runtime-config))
-      (assoc :example-page
-             (component/using (page/new-page) [:handler :app-status]))))
+      (assoc :page
+             (component/using (page/map->Page {}) [:handler :app-status]))))
 
 (defn -main
   "starts up the production system."
   [& args]
-  (system/start (serving/add-server (example-system {}) :example-page)))
+  (system/start (serving/add-server (example-system {}) :page)))
 

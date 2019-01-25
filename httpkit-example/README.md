@@ -8,8 +8,9 @@ This is a very simple application based on [tesla-microservice](https://github.c
 ```
 
 ## Running it
-Get [leiningen](http://leiningen.org/#install). Clone the repo. Start the example application with
 
-`$ lein run`
+Get [leiningen](http://leiningen.org/#install). Clone the repo. 
 
-Access the example page under `http://localhost:8080/example`.
+Start the example application with `lein run`
+
+Access the example page under [localhost:8080/example](http://localhost:8080/example).

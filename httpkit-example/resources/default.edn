@@ -1,0 +1,5 @@
+{
+ :status-url  "/status"
+ :health-url  "/health"
+ :server-port 8080
+ }
