@@ -3,7 +3,6 @@
             [com.stuartsierra.component :as comp]
             [ring.mock.request :as mock]))
 
-
 (defmacro with-started
   "bindings => [name init ...]
 
@@ -32,8 +31,8 @@
     {k merged}))
 
 (defn mock-request [method url args]
-  (let [request (mock/request method url)
-        all-keys (keys args)
+  (let [request   (mock/request method url)
+        all-keys  (keys args)
         new-input (map (partial merged-map-entry request args) all-keys)]
     (merge request (into {} new-input))))
 

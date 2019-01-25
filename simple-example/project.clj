@@ -19,4 +19,4 @@
                                             [hickory "0.7.0"]]
                              :plugins      [[lein-ancient "0.6.10"]]}}
 
-            :main ^:skip-aot de.otto.tesla.example.example-system)
+            :main ^:skip-aot de.otto.tesla.example.core)

@@ -1,14 +1,15 @@
 (ns de.otto.tesla.example.calculating-test
   (:require [clojure.test :refer :all]
             [de.otto.tesla.example.calculating :as calculating]
-            [de.otto.tesla.example.example-system :as example-system]
-            [de.otto.tesla.util.test-utils :as u]))
-(deftest ^:unit calculations-should-be-counted
-  (testing "Should increment the calc counter on calculations."
-    (u/with-started [started (example-system/example-system {})]
-                    (let [calculator (:calculator started)
-                          result1 (calculating/calculate! calculator "foo")
-                          result2 (calculating/calculate! calculator "bar")]
-                      (is (= result1 "FOO"))
-                      (is (= result2 "BAR"))
-                      (is (= (calculating/calculations calculator) 2))))))
+            [com.stuartsierra.component :as c]
+            [de.otto.tesla.stateful.app-status :as app-status]))
+
+(deftest ^:unit calculating
+  (testing "it stores the result of calculations"
+    (with-redefs [app-status/register-status-fun (constantly nil)]
+      (let [calculator (c/start (calculating/map->Calculator {}))]
+        (calculating/calculate! calculator "foo")
+        (calculating/calculate! calculator "bar")
+
+        (is (= ["FOO" "BAR"]
+               (calculating/results calculator)))))))

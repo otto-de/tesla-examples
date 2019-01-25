@@ -1,44 +1,34 @@
 (ns de.otto.tesla.example.calculating
-  (:require [com.stuartsierra.component :as component]
-            [de.otto.tesla.stateful.metering :as metering]
+  (:require [com.stuartsierra.component :as c]
+            [clojure.string :as cs]
             [clojure.tools.logging :as log]
             [de.otto.tesla.stateful.app-status :as app-status]
-            [de.otto.status :as s]
-            [metrics.timers :as timers]))
+            [de.otto.status :as s]))
 
 ;; status turns warning after 10 calculations. Because license expired.
-(defn- status-fun
-  [calculations]
-  (if (> 10 @calculations)
+(defn- status-fun [results]
+  (if (> 10 (count @results))
     (s/status-detail :calculator :ok "less than 10 calculations performed")
-    (s/status-detail :calculator :warning "more than 10 calculations perormed. Renew license.")))
+    (s/status-detail :calculator :warning "more than 10 calculations performed. Renew license.")))
 
-(defprotocol PubCalculator
-  (calculations [self])
-  (calculate! [self input]))
+(defn- do-something [input]
+  (cs/upper-case input))
 
-(defrecord Calculator [fun]
-  component/Lifecycle
+(defn calculate! [{:keys [results]} input]
+  (swap! results conj (do-something input)))
+
+(defn results [{:keys [results]}]
+  @results)
+
+(defrecord Calculator [app-status]
+  c/Lifecycle
   (start [self]
     (log/info "-> starting example calculator.")
-    (let [new-self
-          (assoc self
-            :timer (metering/timer! (:metering self) "calculations")
-            :calculations (atom 0)
-            :fun fun)]
-      (app-status/register-status-fun (:app-status new-self)
-                                      (partial status-fun (:calculations new-self)))
-      new-self))
+    (let [results (atom [])]
+      (app-status/register-status-fun app-status (partial status-fun results))
+      (assoc self
+        :results results)))
 
   (stop [self]
     (log/info "<- stopping example calculator.")
-    (reset! (:calculations self) 0)
-    self)
-  PubCalculator
-  (calculations [self] @(:calculations self))
-  (calculate! [self input]
-    (timers/time! (:timer self)
-                  (swap! (:calculations self) inc)
-                  ((:fun self) input))))
-
-(defn new-calculator [fun] (map->Calculator {:fun fun}))
+    self))
