@@ -1,0 +1,10 @@
+{:server-port 8080
+ :status-url  "/status"
+ :health-url  "/health"
+
+ ; use this if you need a grace-time during which
+ ; the system reports unhealthy before shutting down.
+ ;:wait-ms-on-stop 10000
+ }
+
+
